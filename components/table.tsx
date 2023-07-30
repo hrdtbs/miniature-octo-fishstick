@@ -3,6 +3,8 @@ import { timeAgo } from "@/lib/utils";
 import Image from "next/image";
 import RefreshButton from "./refresh-button";
 import { seed } from "@/lib/seed";
+import DeleteUserButton from "./delete-user-button";
+import UserCard from "./user-card";
 
 export default async function Table() {
   let data;
@@ -23,7 +25,6 @@ export default async function Table() {
       throw e;
     }
   }
-
   const { rows: users } = data;
   const duration = Date.now() - startTime;
 
@@ -36,18 +37,21 @@ export default async function Table() {
         <RefreshButton />
       </div>
       <div>
-        {users.map((user) => (
-          <div key={user.name}>
-            <div>
-              <Image src={user.image} alt={user.name} width={48} height={48} />
+        {users.map((user) => {
+          return (
+            <div key={user.name}>
               <div>
-                <p>{user.name}</p>
-                <p>{user.email}</p>
+                <UserCard
+                  name={user.name}
+                  email={user.email}
+                  image={user.image}
+                />
+                <DeleteUserButton email={user.email} />
               </div>
+              <p>{timeAgo(user.createdAt)}</p>
             </div>
-            <p>{timeAgo(user.createdAt)}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
