@@ -3,11 +3,11 @@
 import { useTransition } from "react";
 import { deleteUserAction } from "./actions";
 
-interface Props {
-  email: string;
+interface DeleteUserButtonProps {
+  id: string;
 }
 
-export default function DeleteUserButton({ email }: Props) {
+export default function DeleteUserButton(props: DeleteUserButtonProps) {
   const [isPending, startTransition] = useTransition();
   return (
     <button
@@ -15,7 +15,7 @@ export default function DeleteUserButton({ email }: Props) {
       disabled={isPending}
       onClick={() => {
         startTransition(() => {
-          deleteUserAction(email);
+          deleteUserAction(props.id);
         });
       }}
     >

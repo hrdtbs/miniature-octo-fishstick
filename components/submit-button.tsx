@@ -2,11 +2,11 @@
 
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
-interface Props {
+interface SubmitButtonProps {
   children: React.ReactNode;
 }
 
-export default function SubmitButton({ children }: Props) {
+export default function SubmitButton({ children }: SubmitButtonProps) {
   const { pending } = useFormStatus();
 
   return (

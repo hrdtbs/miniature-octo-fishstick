@@ -39,14 +39,15 @@ export default async function Table() {
       <div>
         {users.map((user) => {
           return (
-            <div key={user.name}>
+            <div key={user.id}>
               <div>
                 <UserCard
                   name={user.name}
                   email={user.email}
                   image={user.image}
+                  id={user.id}
                 />
-                <DeleteUserButton email={user.email} />
+                <DeleteUserButton id={user.id} />
               </div>
               <p>{timeAgo(user.createdAt)}</p>
             </div>
