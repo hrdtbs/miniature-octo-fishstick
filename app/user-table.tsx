@@ -1,12 +1,12 @@
 import { sql } from "@vercel/postgres";
 import { timeAgo } from "@/lib/utils";
-import Image from "next/image";
-import RefreshButton from "./refresh-button";
+import RefreshButton from "@/components/refresh-button";
 import { seed } from "@/lib/seed";
-import DeleteUserButton from "./delete-user-button";
-import UserCard from "./user-card";
+import { deleteUserAction, updateUserAction } from "@/app/actions";
+import SubmitButton from "@/components/submit-button";
+import Image from "next/image";
 
-export default async function Table() {
+export default async function UserTable() {
   let data;
   let startTime = Date.now();
 
@@ -41,13 +41,22 @@ export default async function Table() {
           return (
             <div key={user.id}>
               <div>
-                <UserCard
-                  name={user.name}
-                  email={user.email}
-                  image={user.image}
-                  id={user.id}
+                <Image
+                  src={user.image}
+                  alt={user.name}
+                  width={48}
+                  height={48}
                 />
-                <DeleteUserButton id={user.id} />
+
+                <form action={updateUserAction}>
+                  <input type="text" defaultValue={user.name} name="name" />
+                  <input type="email" defaultValue={user.email} name="email" />
+                  <input type="hidden" value={user.id} readOnly name="id" />
+                  <SubmitButton>Update</SubmitButton>
+                  <SubmitButton formAction={deleteUserAction}>
+                    Delete
+                  </SubmitButton>
+                </form>
               </div>
               <p>{timeAgo(user.createdAt)}</p>
             </div>

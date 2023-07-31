@@ -2,15 +2,14 @@
 
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
-interface SubmitButtonProps {
-  children: React.ReactNode;
-}
-
-export default function SubmitButton({ children }: SubmitButtonProps) {
+export default function SubmitButton({
+  children,
+  ...props
+}: React.ComponentPropsWithoutRef<"button">) {
   const { pending } = useFormStatus();
 
   return (
-    <button type="submit" disabled={pending}>
+    <button {...props} type="submit" disabled={pending}>
       {pending ? "Pending..." : children}
     </button>
   );

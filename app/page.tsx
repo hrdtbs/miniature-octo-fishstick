@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import Table from "@/components/table";
-import TablePlaceholder from "@/components/table-placeholder";
-import CreateUserForm from "@/components/create-user-form";
+import UserTablePlaceholder from "@/app/user-table-placeholder";
+import UserTable from "./user-table";
+import CreateUserForm from "./create-user-form";
 
 export const runtime = "edge";
 export const preferredRegion = "home";
@@ -11,8 +11,8 @@ export default function Home() {
   return (
     <main>
       <CreateUserForm />
-      <Suspense fallback={<TablePlaceholder />}>
-        <Table />
+      <Suspense fallback={<UserTablePlaceholder />}>
+        <UserTable />
       </Suspense>
     </main>
   );

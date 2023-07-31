@@ -3,7 +3,8 @@
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
-export async function deleteUserAction(id: string) {
+export async function deleteUserAction(formData: FormData) {
+  const id = formData.get("id") as string;
   await sql`
         DELETE FROM users WHERE id = ${id};
     `;
