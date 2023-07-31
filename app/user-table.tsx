@@ -41,12 +41,14 @@ export default async function UserTable() {
           return (
             <div key={user.id}>
               <div>
-                <Image
-                  src={user.image}
-                  alt={user.name}
-                  width={48}
-                  height={48}
-                />
+                {user.image ? (
+                  <Image
+                    src={user.image}
+                    alt={user.name}
+                    width={48}
+                    height={48}
+                  />
+                ) : null}
 
                 <form action={updateUserAction}>
                   <input type="text" defaultValue={user.name} name="name" />

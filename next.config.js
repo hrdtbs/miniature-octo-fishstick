@@ -4,7 +4,7 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: ["pbs.twimg.com"],
+    domains: ["api.dicebear.com"],
   },
 };
 
