@@ -34,12 +34,14 @@ export default async function UserTable() {
         <p>
           Fetched {users.length} users in {duration}ms
         </p>
-        <RefreshButton />
+        <p>
+          <RefreshButton />
+        </p>
       </div>
       <div>
         {users.map((user) => {
           return (
-            <div key={user.id}>
+            <section key={user.id}>
               <div>
                 {user.image ? (
                   <Image
@@ -60,8 +62,12 @@ export default async function UserTable() {
                   </SubmitButton>
                 </form>
               </div>
-              <p>{timeAgo(user.createdAt)}</p>
-            </div>
+              <p>
+                <time dateTime={user.createdAt.toISOString()}>
+                  Created at {timeAgo(user.createdAt)}
+                </time>
+              </p>
+            </section>
           );
         })}
       </div>

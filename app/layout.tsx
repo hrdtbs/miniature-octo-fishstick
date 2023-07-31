@@ -1,4 +1,6 @@
 import { Inter } from "next/font/google";
+import "ress";
+import "./global.css";
 
 export const metadata = {
   title: "Vercel Postgres Demo with Prisma",
