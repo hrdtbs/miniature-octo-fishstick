@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import UserTablePlaceholder from "@/app/user-table-placeholder";
 import UserTable from "./user-table";
 import CreateUserForm from "./create-user-form";
+import "./global.css";
 
 export const runtime = "edge";
 export const preferredRegion = "home";
